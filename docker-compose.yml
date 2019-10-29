@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mysql:
+    container_name: metabase_mysql
+    image: mysql:5.7.22
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    environment:
+      - MYSQL_DATABASE=Redmine # 分析したいDBの名前。この時点ではDBが作成されるだけ。後からデータをぶち込む。
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_HOST=%
+    ports:
+      - "3307:3306"
+  metabase:
+    container_name: metabase_web
+    image: metabase/metabase:latest
+    links:
+      - mysql
+    ports:
+      - "3000:3000"
