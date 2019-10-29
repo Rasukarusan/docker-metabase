@@ -1,0 +1,4 @@
+metabase_db/*
+mysql/*
+!metabase_db/.gitkeep
+!mysql/.gitkeep
